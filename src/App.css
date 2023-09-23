@@ -45,3 +45,47 @@ body {
   border-radius: 1rem;
   background-color: var(--bs-dark);
 }
+
+/* Spinner ========================================================== */
+.spinner-container {
+  display: grid;
+  place-items: center;
+}
+.spinner {
+  --spinner-width: min(8rem, 80vw);
+  position: relative;
+  width: var(--spinner-width);
+  aspect-ratio: 1 / 1;
+  background-image: conic-gradient(var(--bs-primary) 70%, #0000 0deg);
+  border-radius: 100%;
+  animation: spin infinite linear 1300ms;
+}
+@keyframes spin {
+  from {
+    transform: rotate(45deg);
+  }
+  to {
+    transform: rotate(405deg);
+  }
+}
+.spinner::before,
+.spinner::after {
+  content: "";
+  width: 1rem;
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  top: 0;
+  left: calc(50% - 0.5rem);
+  border-radius: 100%;
+  background-color: var(--bs-primary);
+}
+.spinner::after {
+  transform-origin: 50% calc(var(--spinner-width) / 2);
+  transform: rotate(252deg);
+}
+.spinner__bg {
+  position: absolute;
+  inset: 1rem;
+  background-color: #f3f3f3;
+  border-radius: 100%;
+}
