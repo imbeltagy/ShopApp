@@ -10,44 +10,38 @@ const Home = React.lazy(() => import("./Pages/Home")),
   Cart = React.lazy(() => import("./Pages/Cart")),
   Login = React.lazy(() => import("./Pages/Login"));
 
+const pages = [
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/shop",
+    element: <Shop />,
+  },
+  {
+    path: "/cart",
+    element: <Cart />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+];
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route
-            index
-            element={
-              <React.Suspense fallback={"Loading..."}>
-                <Home />
-              </React.Suspense>
-            }
-          />
-          <Route
-            path="shop"
-            element={
-              <React.Suspense fallback={"Loading..."}>
-                <Shop />
-              </React.Suspense>
-            }
-          />
-          <Route
-            path="cart"
-            element={
-              <React.Suspense fallback={"Loading..."}>
-                <Cart />
-              </React.Suspense>
-            }
-          />
-          <Route
-            path="login"
-            element={
-              <React.Suspense fallback={"Loading..."}>
-                <Login />
-              </React.Suspense>
-            }
-          />
+          {pages.map((e) => (
+            <Route
+              key={e.path}
+              path={e.path}
+              element={<React.Suspense fallback={"Loading..."}>{e.element}</React.Suspense>}
+            />
+          ))}
           <Route path="*" element={<Navigate to="/" replace={true} />} />
         </Routes>
         <Footer />
