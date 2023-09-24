@@ -22,7 +22,7 @@ const pages = [
   {
     path: "/shop",
     element: (
-      <CheckIfLogged>
+      <CheckIfLogged pageName="Shop">
         <Shop />
       </CheckIfLogged>
     ),
@@ -30,7 +30,7 @@ const pages = [
   {
     path: "/cart",
     element: (
-      <CheckIfLogged>
+      <CheckIfLogged pageName="Cart">
         <Cart />
       </CheckIfLogged>
     ),
