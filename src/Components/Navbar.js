@@ -1,7 +1,28 @@
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../../node_modules/bootstrap/dist/js/bootstrap.min";
+import { useAuth } from "../hooks/useAuth";
 
 const Navbar = () => {
+  const { isLogged } = useAuth();
+  const links = [
+    {
+      path: ".",
+      text: "Home",
+    },
+    {
+      path: "/shop",
+      text: "Shop",
+    },
+    {
+      path: "/cart",
+      text: "Cart",
+    },
+    {
+      path: isLogged ? "/logout" : "/login",
+      text: isLogged ? "Logout" : "Login",
+    },
+  ];
+
   return (
     <header className="text-bg-dark navbar navbar-expand-sm">
       <div className="container d-flex align-items-center justify-content-between p-4">
@@ -18,26 +39,13 @@ const Navbar = () => {
         </button>
         <nav className="collapse navbar-collapse">
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <NavLink to="." className="nav-link text-white">
-                Home
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to="shop" className="nav-link text-white">
-                Shop
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to="cart" className="nav-link text-white">
-                Cart
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to="login" className="nav-link text-white">
-                Login
-              </NavLink>
-            </li>
+            {links.map((e) => (
+              <li key={e.path} className="nav-item">
+                <Link to={e.path} className="nav-link text-white">
+                  {e.text}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
       </div>

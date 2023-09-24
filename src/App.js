@@ -5,6 +5,9 @@ import React from "react";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import LoadingScreen from "./Components/LoadingScreen";
+import { AuthProvider } from "./hooks/useAuth";
+import Logout from "./Pages/Logout";
+import CheckIfLogged from "./Components/CheckIfLogged";
 // Import Pages
 const Home = React.lazy(() => import("./Pages/Home")),
   Shop = React.lazy(() => import("./Pages/Shop")),
@@ -18,11 +21,19 @@ const pages = [
   },
   {
     path: "/shop",
-    element: <Shop />,
+    element: (
+      <CheckIfLogged>
+        <Shop />
+      </CheckIfLogged>
+    ),
   },
   {
     path: "/cart",
-    element: <Cart />,
+    element: (
+      <CheckIfLogged>
+        <Cart />
+      </CheckIfLogged>
+    ),
   },
   {
     path: "/login",
@@ -34,18 +45,21 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
-        <Routes>
-          {pages.map((e) => (
-            <Route
-              key={e.path}
-              path={e.path}
-              element={<React.Suspense fallback={<LoadingScreen />}>{e.element}</React.Suspense>}
-            />
-          ))}
-          <Route path="*" element={<Navigate to="/" replace={true} />} />
-        </Routes>
-        <Footer />
+        <AuthProvider>
+          <Navbar />
+          <Routes>
+            {pages.map((e) => (
+              <Route
+                key={e.path}
+                path={e.path}
+                element={<React.Suspense fallback={<LoadingScreen />}>{e.element}</React.Suspense>}
+              />
+            ))}
+            <Route path="logout" element={<Logout />} />
+            <Route path="*" element={<Navigate to="/" replace={true} />} />
+          </Routes>
+          <Footer />
+        </AuthProvider>
       </BrowserRouter>
     </div>
   );

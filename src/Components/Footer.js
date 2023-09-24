@@ -14,9 +14,6 @@ const Footer = () => {
           <NavLink to="cart" className="nav-link text-white">
             Cart
           </NavLink>
-          <NavLink to="login" className="nav-link text-white">
-            Login
-          </NavLink>
         </nav>
       </div>
     </footer>
