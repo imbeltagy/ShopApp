@@ -12,7 +12,6 @@ import SingleProduct from "./Pages/SingleProcut";
 // Import Pages
 const Home = React.lazy(() => import("./Pages/Home")),
   Shop = React.lazy(() => import("./Pages/Shop")),
-  Cart = React.lazy(() => import("./Pages/Cart")),
   Login = React.lazy(() => import("./Pages/Login"));
 
 const pages = [
@@ -25,14 +24,6 @@ const pages = [
     element: (
       <CheckIfLogged pageName="Shop">
         <Shop />
-      </CheckIfLogged>
-    ),
-  },
-  {
-    path: "/cart",
-    element: (
-      <CheckIfLogged pageName="Cart">
-        <Cart />
       </CheckIfLogged>
     ),
   },

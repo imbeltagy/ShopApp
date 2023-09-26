@@ -14,10 +14,6 @@ const Navbar = () => {
       text: "Shop",
     },
     {
-      path: "/cart",
-      text: "Cart",
-    },
-    {
       path: isLogged ? "/logout" : "/login",
       text: isLogged ? "Logout" : "Login",
     },
