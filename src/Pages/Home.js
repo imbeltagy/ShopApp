@@ -1,5 +1,5 @@
 import Main from "../Components/Main";
-import posts from "../assets/Posts";
+import posts from "./../assets/Posts";
 
 const Home = () => {
   return (
