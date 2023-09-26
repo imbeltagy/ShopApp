@@ -8,8 +8,8 @@ const users = [
 ];
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(),
-    [isLogged, setIsLogged] = useState(false);
+  const [user, setUser] = useState("beltagy"),
+    [isLogged, setIsLogged] = useState(true);
 
   const login = (username, password) => {
     if (users.some((e) => e.username === username && e.password === password)) {

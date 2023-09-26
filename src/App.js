@@ -8,6 +8,7 @@ import LoadingScreen from "./Components/LoadingScreen";
 import { AuthProvider } from "./hooks/useAuth";
 import Logout from "./Pages/Logout";
 import CheckIfLogged from "./Components/CheckIfLogged";
+import SingleProduct from "./Pages/SingleProcut";
 // Import Pages
 const Home = React.lazy(() => import("./Pages/Home")),
   Shop = React.lazy(() => import("./Pages/Shop")),
@@ -56,6 +57,7 @@ function App() {
               />
             ))}
             <Route path="logout" element={<Logout />} />
+            <Route path="shop/:productID" element={<SingleProduct />} />
             <Route path="*" element={<Navigate to="/" replace={true} />} />
           </Routes>
           <Footer />
